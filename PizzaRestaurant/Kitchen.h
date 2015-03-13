@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "Pizza.h"
+#import "CheeryManager.h"
+#import "NoPhishManager.h"
+#import "RestaurantManager.h"
+
 
 @interface Kitchen : NSObject
 
-//- (Pizza *)makePizzaWithSize:(Size)size toppings:(NSArray *)toppings;
+- (Pizza *)makePizzaWithSize:(PizzaSize)size toppings:(NSArray *)toppings;
 
 -(instancetype) initWithSize:(PizzaSize)pizzaSize topping:(NSArray*)topping;
 
+@property (nonatomic, strong) id<RestaurantManager>delegate;
 
 @end

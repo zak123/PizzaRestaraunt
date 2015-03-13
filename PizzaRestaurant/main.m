@@ -17,7 +17,35 @@ int main(int argc, const char * argv[])
         
         NSLog(@"Please pick your pizza size and toppings:");
         
-        Kitchen *restaurantKitchen = [Kitchen new];
+        CheeryManager *cheeryManager = [[CheeryManager alloc] init];
+        
+        
+        Kitchen *restaurantKitchen = [[Kitchen alloc] init];
+        
+        
+        restaurantKitchen.delegate = cheeryManager;
+        
+        Pizza *newPizza = [restaurantKitchen makePizzaWithSize:PizzaSizeLarge toppings:@[@"cheese", @"sauce"]];
+        
+        if (newPizza == nil) {
+            NSLog(@"No pizza made, maybe hire a manager?");
+        } else {
+            NSLog(@"We made a pizza! %@", newPizza);
+        }
+        
+        
+        NoPhishManager *noPhishManager = [NoPhishManager new];
+        
+        restaurantKitchen.delegate = noPhishManager;
+        
+        newPizza = [restaurantKitchen makePizzaWithSize:PizzaSizeLarge toppings:@[@"cheese", @"sauce", @"anchovies"]];
+        
+        if (newPizza == nil) {
+            NSLog(@"No pizza made.");
+        } else {
+            NSLog(@"We made a pizza! %@", newPizza);
+        }
+    
         
         while (TRUE) {
             // Loop forever
@@ -33,6 +61,10 @@ int main(int argc, const char * argv[])
             
             // Take the first word of the command as the size, and the rest as the toppings
             NSArray *commandWords = [inputString componentsSeparatedByString:@" "];
+            
+           
+            
+            [restaurantKitchen makePizzaWithSize:PizzaSizeLarge toppings:@"cheese"];
             
             // And then send some message to the kitchen...
         }
